@@ -1,0 +1,10 @@
+- hosts: appservers
+  vars:
+    - package: lynx
+    - type: latest
+  vars_files: 
+    - conf/vars.yml
+    - conf/anothervars.yml
+  tasks:
+    - name: Installing webserver on the host
+      yum: name='{{ package }}' state=installed

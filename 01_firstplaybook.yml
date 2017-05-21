@@ -1,0 +1,4 @@
+- hosts: appservers
+  tasks:
+    - name: Install webservers
+      yum: name=lynx state=installed update_cache=true

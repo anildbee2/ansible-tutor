@@ -1,0 +1,40 @@
+---
+- hosts: appservers
+  user: root
+  gather_facts: no
+  connection: ssh
+  become: yes
+  tasks:
+  - name: Date/time stamp for Playbook start
+    shell: echo date
+    register: timestamp
+    
+  - debug: msg="{{ timestamp }}"
+    
+    
+
+  - name: Installing the webserver
+    yum: name=httpd state=installed
+    notify: Start Apache  
+
+  - name: verify service is stared
+    raw: systemctl status httpd
+    
+  - name: Install additional packages
+    yum:  name={{ item }} state=installed
+    with_items:
+     - telnet
+     - lynx
+
+  - name: Log all the packages Installed
+    shell: yum list installed
+    
+  - name: Date/time stamp for Playbook start
+    raw: echo date
+    register: timestamp
+    
+  - debug: msg="{{ timestamp }}"
+  
+  handlers:
+    - name: Start Apache
+      service: name=httpd state=started

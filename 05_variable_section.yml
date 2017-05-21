@@ -1,0 +1,27 @@
+--- # variable_section
+- hosts: appservers
+  user: root
+  become: yes
+  gather_facts: no
+  vars:
+   playbook_version: 1.0b
+  vars_files:
+    - conf/vars.yml
+  vars_prompt:
+    - name: webdomain
+      prompt: Web Domain?
+      private: no
+      
+    - name: emailid
+      prompt: Input emailid
+      default: akash94thakur@gmail.com
+      private: no
+      
+    - name: "my_password2"
+      prompt: "Enter password2"
+      private: yes
+      encrypt: "md5_crypt"
+      confirm: yes
+      salt_size: 7
+      salt: "foo"
+     

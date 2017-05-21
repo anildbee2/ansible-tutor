@@ -1,0 +1,6 @@
+--- #my yml file
+- hosts: appservers
+  user: root
+  become: yes
+  connection: ssh
+  gather_facts: yes
