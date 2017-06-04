@@ -1,0 +1,10 @@
+--- # Local action example
+- hosts: 127.0.0.1
+  user: root
+  connection: local
+  gather_facts: no
+  tasks:
+   - name: Install telnet client
+     yum:
+       name: telnet
+       state: present

@@ -1,0 +1,17 @@
+--- # Run once Playbook
+- hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  user: root
+  tasks: 
+   - name: Find uptime of all servers.
+     raw: /usr/bin/uptime
+     
+   - name: note start time of playbook
+     raw: date
+     register: date
+     run_once: yes 
+
+      
+   
