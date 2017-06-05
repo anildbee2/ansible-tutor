@@ -1,0 +1,15 @@
+--- #Loops example
+- hosts: all
+  user: root
+  gather_facts: no
+  connection: ssh
+  become: yes
+  tasks:
+  - name: creaate multiple users
+    user:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - john
+      - wick
+      - tom

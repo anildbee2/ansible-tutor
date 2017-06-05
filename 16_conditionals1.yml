@@ -1,0 +1,11 @@
+--- 
+- hosts: all
+  connection: ssh
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: Checking systemdate
+     raw: date
+     register: output
+     when: ansible_os_family == "RedHat"
+   - debug: msg={{ output }}
