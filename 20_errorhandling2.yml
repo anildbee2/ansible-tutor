@@ -1,0 +1,19 @@
+--- #working with blocks
+- hosts: all
+  gather_facts: yes
+  user: root
+  become: yes
+  tasks:
+    - block:
+        - name: Install lynx
+          yum:
+            name: lynx
+            state: present
+        - name: Error causing area
+          raw: /bin/false
+      rescue:
+        - debug:
+            msg: "Some error occured"
+      always:
+        - debug:
+            msg: "I will allways be executed"

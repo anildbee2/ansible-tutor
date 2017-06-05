@@ -1,0 +1,26 @@
+--- # An example on tags
+- hosts: all
+  user: root
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: Install Packages
+     yum:
+      name: "{{ item }}"
+      state: present
+     with_items:
+        - lynx
+        - telnet
+     tags:
+        - packages
+        - install
+   - name: Check date on system
+     raw: date
+     register: output
+     tags:
+       - date
+   - name: print date
+     debug: msg="{{ output }}"
+     tags:
+       - date
+       

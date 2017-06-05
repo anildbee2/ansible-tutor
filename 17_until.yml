@@ -1,0 +1,13 @@
+--- #Check status of apache server
+- hosts: all
+  connection: ssh
+  gather_facts: true
+  become: yes
+  user: root
+  tasks: 
+   - name: Testing until usages in ansible
+     raw: systemctl status httpd
+     register: output
+     until: output.stdout.find("active (running)") != -1
+     retries: 5
+     delay: 10

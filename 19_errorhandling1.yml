@@ -1,0 +1,15 @@
+---
+- hosts: all
+  connection: ssh
+  user: root
+  become: yes
+  gather_facts: yes
+  any_errors_fatal:  true
+  tasks:
+    - name: Producing intentional error
+      raw: /bin/false
+      #ignore_errors: yes
+    - name: Printing the date
+      raw: date
+      register: output
+    
