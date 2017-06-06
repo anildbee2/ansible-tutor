@@ -1,0 +1,15 @@
+--- # rolling updates example.
+- hosts: all
+  user: root
+  connection: ssh
+  gather_facts: true
+  become: true
+  #serial: 1
+  serial: 50%
+  
+  tasks:
+    - name: Check date on the system
+      raw: date
+      register: date
+    - debug:
+        msg: "{{ date }}"

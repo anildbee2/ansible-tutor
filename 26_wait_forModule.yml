@@ -1,0 +1,17 @@
+---
+# Wait for module can be used to pause the playbook run untiil the defined condition is fulfilled
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  user: root
+  become: yes
+  tasks:
+    - block:
+        - name: Testing wait_for module
+          wait_for:
+             path: /tmp/ansible.txt # will wait for 5 min,until this file is not present
+        - name: Waiting for webserver to start. # This will wait for a service to start listening on port 80
+          wait_for:
+            port: 80
+
+

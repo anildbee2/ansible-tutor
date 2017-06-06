@@ -1,0 +1,17 @@
+--- # creates a cron job
+- hosts: all
+  connection: ssh
+  user: root
+  become: true
+  gather_facts: false
+  tasks: 
+    - block:
+        - name: Setting up the cronjob
+          cron:
+             name: "Check directories"
+             minute: "0"
+             hour: "5,2"
+             job: "ls -alh > /dev/null"
+      rescue:
+        - debug:
+            msg: "Failed setting up cronjob"

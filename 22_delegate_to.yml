@@ -1,0 +1,14 @@
+--- # this is delegate to example,Can specify as where to run a particular task.
+- hosts: all
+  connection: ssh
+  gather_facts: true
+  user: root
+  become: yes
+  tasks:
+    - name: Testing deligate to
+      raw: echo "I am ansible" >> ansible.txt
+      #delegate_to: 127.0.0.1
+      delegate_to: slave1
+    - name: This will run on all the servers
+      raw: echo "hello"
+      

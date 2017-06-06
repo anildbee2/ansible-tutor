@@ -1,0 +1,15 @@
+--- # Pause module examples
+- hosts: all
+  user: root
+  gather_facts: false
+  become: true
+  tasks:
+    - block:
+        - pause:
+            prompt: Are you sure you want to destroy the server?
+        - debug:
+            msg: Server destroyed
+        - pause:
+            seconds: 5
+        - pause:
+            minutes: 1

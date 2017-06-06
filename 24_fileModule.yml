@@ -1,0 +1,33 @@
+--- # File module usages
+- hosts: all
+  connection: ssh
+  user: root
+  gather_facts: true
+  tasks: 
+    - block: #creates an empty file
+        - name: Create File
+          file: 
+            path: /tmp/ansible.txt
+            owner: root
+            group: root
+            mode: 0644
+            state: touch
+      rescue:
+        - name: Rescue initiated
+          debug:
+            msg: "File can not be created."
+
+    - block: # Creates symlink
+        - name: Create symlink
+          file:
+            src: /tmp/ansible.txt
+            mode: 0644
+            dest: link
+            state: link
+            owner: root
+      rescue:
+        - name: Rescue initiated
+          debug:
+            msg: "Symlink can not be created"
+
+

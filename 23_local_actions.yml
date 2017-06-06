@@ -1,0 +1,10 @@
+--- #local_action is a short hand to delegate_to: 127.0.0.1
+- hosts: all
+  connection: ssh
+  user: root
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Checking the localaction
+      local_action: command touch test.ansible
+     
