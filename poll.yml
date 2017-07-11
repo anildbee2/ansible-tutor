@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: root
+  connecteion: ssh
+  gather_facts: no
+  tasks:
+    - name: Simulate the log runnig process
+      command: sleep 40
+      async: 45
+      poll: 5
