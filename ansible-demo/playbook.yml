@@ -1,7 +1,11 @@
 - hosts: wordpress
-
+  user: ansible
+  environment:
+     http_proxy: http://web-proxy.ind.hp.com:8080
+     https_proxy: https://web-proxy.ind.hp.com:8080
   roles:
     - server
     - php
     - mysql
     - wordpress
+  

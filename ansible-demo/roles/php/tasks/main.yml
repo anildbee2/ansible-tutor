@@ -1,2 +1,13 @@
 ---
 # tasks file for php
+- name: Intall php and dependencies
+  yum:
+    name: "{{ item }}"
+    state: installed
+
+  become: yes
+  with_items:
+   - php
+   - php-fpm
+   - php-gd
+   - php-mysql

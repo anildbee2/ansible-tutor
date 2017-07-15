@@ -1,2 +1,11 @@
 ---
 # tasks file for server
+- name: Install required software
+  yum: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - httpd
+    - mariadb-server
+    - mariadb
+    - MySQL-python
+      
