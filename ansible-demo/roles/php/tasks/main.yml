@@ -8,6 +8,5 @@
   become: yes
   with_items:
    - php
-   - php-fpm
    - php-gd
    - php-mysql
